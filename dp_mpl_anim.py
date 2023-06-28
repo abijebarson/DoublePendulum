@@ -30,11 +30,11 @@ onion = 10 # History of pendulum shown as onions (general animation reference)
 init_state = (np.pi, np.pi + 0.00000001, 0, 0) 
 
 f = 0
-filename = f'dp[{tmax}][{fps}][{LEN1}-{LEN2}][{M1}-{M2}][{init_state[0]:.2f}-{init_state[1]:.2f}].mp4'
-while os.path.isfile(filename):
+filepath = f'Rendered\dp[{tmax}][{fps}][{LEN1}-{LEN2}][{M1}-{M2}][{init_state[0]:.2f}-{init_state[1]:.2f}].mp4'
+while os.path.isfile(filepath):
     f = f + 1
-    filename = f'dp[{tmax}][{fps}][{LEN1}-{LEN2}][{M1}-{M2}][{init_state[0]:.2f}-{init_state[1]:.2f}]({f}).mp4'
-print("Writing to :", filename)
+    filepath = f'Rendered\dp[{tmax}][{fps}][{LEN1}-{LEN2}][{M1}-{M2}][{init_state[0]:.2f}-{init_state[1]:.2f}]({f}).mp4'
+print("Writing to :", filepath)
 
 plt.style.use('dark_background')   
 fig, ax = plt.subplots()
@@ -101,6 +101,6 @@ ax.set(xlim=(-xlim, xlim),
        ylim=(-ylim, ylim))
 
 anim = FuncAnimation(fig, animate, frames=tot_frames, interval=int((1000*tmax)/tot_frames), blit=True)
-anim.save(filename, writer = 'ffmpeg', fps = fps)
+anim.save(filepath, writer = 'ffmpeg', fps = fps)
 
-print(f'Rendered to: {filename}\nTime: {tmax}\nfps: {fps}')
+print(f'Rendered to: {filepath}\nTime: {tmax}\nfps: {fps}')
